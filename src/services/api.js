@@ -6,7 +6,7 @@ const baseURL = "https://api.airtable.com/v0/app67oeILCiV8Nzfc/Table%201"
 
 const config = {
   headers : {
-    Authorization: `Bearer ${apiKey}`,
+    Authorization: `Bearer keyh1jKufHQOvL8EJ`,
   },
 };
 
