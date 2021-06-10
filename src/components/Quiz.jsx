@@ -1,11 +1,8 @@
-import React from 'react';
 import { useState, useEffect } from 'react'
 import PlayButton from "./PlayButton"
 import ChoiceButtonList from "./ChoiceButtonList"
 import Form from "./Form"
-
 import { useHistory } from 'react-router-dom'
-
 import {
   mp3Array
 } from '../sounds/index.js'
@@ -27,9 +24,80 @@ const Quiz = (props) => {
 
 
   //get random index from given array
+
   const getRandomIndex = (arr) => {
     return Math.floor(Math.random() * arr.length)
   }
+
+
+  const [available, setAvailable] = useState([...mp3Array].sort(() => Math.random() - 0.5))
+  const [played, setPlayed] = useState([])
+  const [randIDX, setRandIDX] = useState(null)
+  const [currentFile, setCurrentFile] = useState()
+
+  console.log(currentFile?.name)
+  
+
+  function fetchFiles() {
+
+    
+    const chosen = available.splice(0,1)
+    setCurrentFile(...chosen)
+    available.push(...chosen)
+
+    
+    
+    
+   
+
+
+
+    
+
+
+
+
+    // !available && setAvailable(mp3Array)
+    // setRandIDX(Math.floor(Math.random() * notPlayed.length))
+    // const file = available
+
+
+    // const notPlayed = mp3Array.filter(file => !played.includes(file))
+    // console.log(notPlayed)
+    
+    // setPlayed([...played, mp3Array[randIDX]])
+}
+
+
+  useEffect(() => {
+
+    fetchFiles()
+
+    
+
+
+
+    // const getPlayButtonValue = (tempArray) => {
+    //   // setTempArray([...mp3Array])
+    //   let index = getRandomIndex(tempArray);
+    //   setCorrectIndex(index);
+    //   let correct = tempArray.splice(index, 1);
+    //   setCorrectObj(correct[0]);
+    //   setTempArray(tempArray);
+    //   console.log("inside pgetPlayButton");
+    // }
+    //  getPlayButtonValue(tempArray);
+  }, [])
+
+
+
+
+
+
+
+
+
+
   //==== Displays xs ===//
   const displayStrikes = () => {
     let stringX = ""
@@ -41,6 +109,7 @@ const Quiz = (props) => {
  // ========================
   return (
     <div className="gameplay-container">
+      <button onClick={fetchFiles}>Fetch Files</button>
       <div className="display-screen-container">
       <h4 id="score">{`${scoreCount} pts`}</h4>
         <h4 id="xxx">{displayStrikes()}</h4>
@@ -63,7 +132,7 @@ const Quiz = (props) => {
         {/* <i className="fas fa-volume-up"></i> */}
       </div>
     
-      <Form score={scoreCount} scores={props.scores} setScores={props.setScores} show={show} />
+      {/* <Form score={scoreCount} scores={props.scores} setScores={props.setScores} show={show} /> */}
   
     </div>
   );

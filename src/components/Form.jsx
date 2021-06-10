@@ -19,10 +19,10 @@ export default function Form(props) {
   // get high scores  from API
    useEffect(()=> {
      const fetchData = async () => {
-       const res = await getAllHighScores();  
-       const data = res.records;
+      //  const res = await getAllHighScores();  
+      //  const data = res.records;
        // sort Scores in descending order and set state
-      setScores(sortScores(data));
+      // setScores(sortScores(data));
        
      } 
     fetchData()
